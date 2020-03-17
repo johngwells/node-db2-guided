@@ -5,7 +5,7 @@ const db = require('../data/connection');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  db('fruits')
+  db('vegetables')
   .then(fruits => {
     res.json(fruits); 
   })
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
-  db('fruits').where({ id }).first()
+  db('vegetables').where({ id }).first()
   .then(fruit => {
     res.json(fruit);
   }) 
@@ -28,9 +28,9 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const fruitData = req.body;
-  db('fruits').insert(fruitData)
+  db('vegetables').insert(fruitData)
   .then(ids => {
-    db('fruits').where({ id: ids[0] })
+    db('vegetables').where({ id: ids[0] })
     .then(newFruitEntry => {
       res.status(201).json(newFruitEntry);
     });

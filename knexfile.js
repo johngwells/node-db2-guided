@@ -3,9 +3,13 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'sqlite3', //db driver
     connection: {
-      filename: './dev.sqlite3'
+      filename: './data/market.db3' // connection could be an object or a string
+    },
+    useNullAsDefault: true, // only needed for sqlite
+    migrations: {
+      directory: './migrations'
     }
   },
 
